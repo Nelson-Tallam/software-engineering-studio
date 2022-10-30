@@ -1,0 +1,229 @@
+version: "2.0"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - good afternoon
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+- intent: organize_event
+  examples: |
+    - Can I organize an event
+    - I want to organize an event
+    - I want to create an event
+- intent: inform_looking_for_tents
+  examples: |
+    - oI am loking for tents
+    - Tents
+    - I want tents
+    - Can I find tents
+- intent: inform_looking_for_chairs
+  examples: |
+    - I am looking for chairs
+    - chairs
+    - I want chairs
+    - Can I find 50 chairs
+- intent: organize_seminar
+  examples: |
+    - I want to organize a seminar
+    - I am organizing a seminar
+    - Organize seminar
+- intent: organize_business_event
+  examples: |
+    - I want to organize a business event
+    - Organize business event
+    - I am organizing a business event
+- intent: organize_corporate_event
+  examples: |
+    - I want to organize a corporate event
+    - Organize corporate event
+    - I am organizing a corporate event
+- intent: organize_private_event
+  examples: |
+    - I am organizing a private event
+    - Organize private event
+    - I am organizing a private event
+- intent: organize_any_other
+  examples: |
+    - The event isn't in the category
+    - Out of the category
+    - Event is out of the categories
+- intent: ask_time
+  examples: |
+    - What is the time?
+    - What time is tomorrow
+    - Next sunday
+- intent: give_date
+  examples: |
+    - 1st May 2021
+    - 5th June 2017
+- intent: give_location
+  examples: |
+    - Nairobi
+    - Kisumu
+    - Narok
+- intent: reject_option
+  examples: |
+    - I won't take the offer
+    - I reject the proposition
+    - We won't take that
+- intent: accept_option
+  examples: |
+    - I accept the offer
+    - I accept the proposition
+- intent: event_name
+  examples: |
+    - The event is called The Annual Conference 
+    - The event's name is Seminar on health
+    - The event is called Great Leader's Forum
+- intent: give_name
+  examples: |
+    - my name is Eric
+    - Mike
+    - Sammy
+- intent:  ask_event
+  examples: |
+    - Can I find an event to attend
+    - Can you find me an event
+    - I am looking for an event to attend
+- intent: give_email
+  examples: |
+    - my email is [egachomba99@gmail.com](email)
+
+    - [moses12@gmail.com](email)
+    - [mimi12@yahoo.com](email)
+    - [moses@gmail.com](email)
+# - regex: email
+#   examples: |
+#     - [a-zA-Z0-9]+@[a-zA-Z]+\.(com|edu|net)
+- intent: event_to_attend
+  examples: |
+    - Corporate
+    - Private
+    - Seminar
+    - Online
+    - Any Other
+- intent: get_tickets
+  examples: |
+    - Send me the ticket for the event called 
+    - Please send me the tickets for the event called
+- intent: confirm_get_ticket
+  examples: |
+    - I want the ticket
+    - Nataka the tickets
+
+- intent: deny_ticket
+  examples: |
+    - I don't want the tickets
+    - I don't need Tickets
+- intent: advertise
+  examples: |
+    - I want to advertise
+    - advertise
+    - Can I advertise in your platform
+    - Can I advertise on your bot
+- intent: advertising
+  examples: |
+    - I want to advertise [tents]{"entity":"merchandise","value":"tents"}
+    - Advertise [tents]{"entity":"merchandise","value":"tents"}
+    - [tents]{"entity":"merchandise","value":"tents"}
+    - I want to advertise [chairs]{"entity":"merchandise","value":"chairs"}
+    - Advertise [chairs]{"entity":"merchandise","value":"chairs"}
+    - [chairs]{"entity":"merchandise","value":"chairs"}
+- intent: merchandise_number
+  examples: |
+    - [100](numbering)
+    - [500](numbering)
+- intent: inform_email
+  examples: |
+    - I want to use email
+    - Email
+    - Use email
+- intent: inform_number
+  examples: |
+    - I want to use a mobile phone number
+    - Mobile number

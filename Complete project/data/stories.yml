@@ -1,0 +1,95 @@
+version: "2.0"
+
+stories:
+
+
+- story: give offer
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: organize_event
+  - action: utter_merchandise_availability
+  - intent: inform_looking_for_tents
+  - action: utter_look_for_tents
+  - action: available_merchandise
+  - action: utter_inform_extra_options
+  - intent: reject_option
+  - action: utter_final_details
+- story: give offer
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: organize_event
+  - action: utter_merchandise_availability
+  - intent: inform_looking_for_chairs
+  - action: utter_look_for_chairs
+  - action: available_merchandise
+  - action: utter_inform_extra_options
+  - intent: reject_option
+  - action: utter_final_details
+- story: give changed offer
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: organize_event
+  - action: utter_merchandise_availability
+  - intent: inform_looking_for_chairs
+  - action: utter_look_for_chairs
+  - action: available_merchandise
+  - action: utter_inform_extra_options
+  - intent: accept_option
+  - action: utter_ask_the_event_name
+- story: give changed offer
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: organize_event
+  - action: utter_merchandise_availability
+  - intent: inform_looking_for_tents
+  - action: utter_look_for_tents
+  - action: available_merchandise
+  - action: utter_inform_extra_options
+  - intent: accept_option
+  - action: utter_ask_the_event_name 
+- story: organize seminar
+  steps:
+  - intent: organize_seminar
+  - action: database_operations
+  # - action: utter_ask_reachout
+- story: organize business_event
+  steps:
+  - intent: organize_business_event
+  - action: database_operations
+  # - action: utter_ask_reachout
+- story: organize corporate_event
+  steps:
+  - intent: organize_corporate_event
+  - action: database_operations
+  # - action: utter_ask_reachout
+- story: organize private_event
+  steps:
+  - intent: organize_private_event
+ 
+  - action: database_operations
+  # - action: utter_ask_reachout
+- story: organize_any_other
+  steps:
+  - intent: organize_any_other
+  - action: database_operations
+  # - action: utter_ask_reachout
+- story: search
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ask_event
+  - action: utter_ask_event
+  - intent: event_to_attend
+  - action: action_look_for_event
+  - action: get_event_fromdb
+  - action: utter_email_details
+  - intent: deny_ticket
+  - action: utter_any
+- story: send tickets
+  steps:
+  - intent: get_tickets
+  - action: send_mail

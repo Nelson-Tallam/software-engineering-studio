@@ -1,0 +1,74 @@
+version: "2.0"
+
+rules:
+
+- rule: Activate the event details form
+  steps:
+  - intent: event_name
+  - action: event_name_form
+  - action: utter_ask_organize_everything
+  - action: organize_event_form
+  - active_loop: organize_event_form
+- rule: Deactivate the event details form
+  condition:
+  - active_loop: organize_event_form
+  steps:
+  - action: organize_event_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  # - action: all_slot_values
+  - action: utter_ask_category
+- rule: activate form
+  steps:
+  - intent: confirm_get_ticket
+  - action: utter_ask_details
+  - action: identity_form
+  - active_loop: identity_form
+- rule: submit form
+  condition:
+  - active_loop: identity_form
+  steps:
+  - action: identity_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_thanks
+  - action: utter_slot_values
+  - action: utter_send_ticket
+- rule: activate user_details_form
+  steps:
+  - intent: advertise
+  - action: user_details_form
+  - active_loop: user_details_form
+  
+- rule: submit form
+  condition:
+  - active_loop: user_details_form
+  steps:
+  - action: user_details_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_submit
+  - action: utter_advertiser_wait
+  - action: utter_details_thanks
+  - action: utter_ask_method
+  - intent: give_email
+  - action: action_submit_adverts
+  - action: utter_assurance
+- rule: activate email form
+  steps:
+  - intent: inform_email
+  - action: user_email_form
+  - active_loop: user_email_form
+- rule: submit email form
+  condition:
+  - active_loop: user_email_form
+  steps:
+  - action: user_email_form
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: action_submit_email
+  - action: action_submit

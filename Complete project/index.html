@@ -1,0 +1,44 @@
+<html>
+  <head><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+  </head>
+  
+    <body>
+      
+     <!-- <p class="h5">Welcome to our event organization and management system.</p>
+     <p class="h5"> Through the chatbot ,we can help you discover ,organize and 
+      communicate with vendors </p>
+      <p class="h5">To access all these services use the chatbot at your right.</p> -->
+        <style>
+            .rw-conversation-container .rw-header{background-color: orange;}
+            .rw-messages-container .rw-message .rw-response{background-color:grey;}
+        </style>
+        <script>!(function () {
+            let e = document.createElement("script"),
+              t = document.head || document.getElementsByTagName("head")[0];
+            (e.src =
+              "https://cdn.jsdelivr.net/npm/rasa-webchat/lib/index.js"),
+              // Replace 1.x.x with the version that you want
+              (e.async = !0),
+              (e.onload = () => {
+                window.WebChat.default(
+                  {
+                    
+                    initPayload: '/greet',
+                    customData: { language: "en" },
+                    socketUrl: "http://localhost:5005",
+                    title: 'Welcome to Events organization',
+                    subtitle: 'We help discover events',
+                   params: { storage: "session"}
+                    
+                    // add other props here
+                  },
+                  null
+                );
+              }),
+              t.insertBefore(e, t.firstChild);
+          })();
+          </script>
+          
+    </body>
+</html>

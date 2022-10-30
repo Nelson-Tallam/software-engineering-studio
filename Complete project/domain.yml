@@ -1,0 +1,240 @@
+version: "2.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - inform_looking_for_tents
+  - inform_looking_for_chairs
+  - organize_event
+  - organize_seminar
+  - organize_business_event
+  - organize_corporate_event
+  - organize_private_event
+  - organize_any_other
+  - ask_time
+  - give_date
+  - give_location
+  - accept_option
+  - reject_option
+  - event_name
+  - give_name
+  - ask_event
+  - give_email
+  - event_to_attend
+  - get_tickets
+  - confirm_get_ticket
+  - deny_ticket
+  - advertise
+  - advertising
+  - merchandise_number
+  - inform_email
+  - inform_number
+  
+entities:
+  - TIME
+  - GPE
+  - DATE 
+  - PERSON
+  - email
+  - merchandise
+  - numbering
+
+slots:
+  TIME:
+    type: text
+  GPE:
+    type: text
+  DATE:
+    type: text
+  the_event_name:
+    type: text
+  PERSON: 
+    type: text
+    influence_conversation: false
+  email:
+    type: text
+  merchandise: 
+    type: text
+  numbering:
+    type: text
+  
+responses:
+  utter_ask_merchandise:
+  - text: What are you advertising?
+  utter_advertiser_wait:
+  - text: Let me see what I have
+  utter_ask_numbering:
+  - text: How many are you advertising?
+  utter_details_thanks:
+  - text: You are advertising {numbering} {merchandise}
+  utter_details_email:
+  - text: Your email is {Email}
+  utter_ask_method:
+  - text: Which email do you want clients to contact you with? 
+  utter_ask_email:
+  - text: What is your email?
+  utter_assurance:
+  - text: Your advert has been placed in our system
+
+  utter_greet:
+  - buttons:
+    - payload: /organize_event
+      title: Organize Event
+    - payload: /ask_event
+      title: Look for event
+    - payload: /advertise
+      title: Advertise
+    text: "Hey! Welcome ...What is your reason for visiting us ?"
+  utter_ask_organize_everything:
+  - text: Please provide all the details about the event.Include the location date and time
+  utter_ask_the_event_name:
+  - text: What is the name of the event.Follow the syntax of - The event is called <Event Name>
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+  utter_merchandise_availability:
+  - buttons:
+    - payload: /inform_looking_for_tents
+      title: Tents
+    - payload: /inform_looking_for_chairs
+      title: Chairs
+
+    text: We offer quick searches and links for tents and chairs.What are you looking for?
+  utter_wait:
+  - text: Just a moment while we find the suitable vendors
+  utter_look_for_tents:
+  - text: Wait as we look for tents
+  utter_look_for_chairs:
+  - text: Wait as we look for chairs
+  utter_inform_extra_options:
+  - buttons:
+    - payload: /accept_option
+      title: "Yes"
+    - payload: /reject_option
+      title: "No"
+
+    text: By the way , we also offer visibility of the event you are organizing and recommend it to potential clients.\n
+          We also generate tickets for the event.Do you wish to proceed?
+    
+  utter_event_name:
+  - text: What is the name of the event you are organizing?
+  utter_ask_category:
+  - buttons:
+    - payload: /organize_seminar
+      title: Seminar
+    - payload: /organize_business_event
+      title: Business event
+    - payload: /organize_corporate_event
+      title: corporate
+    - payload: /organize_private_event
+      title: Private Event
+    - payload: /organize_any_other
+      title: Any Other...
+    text: Under which category is your event? Please pick any of the categories below
+    
+  utter_ask_GPE:
+  - text: What is the location?
+  utter_ask_date:
+  - text: Which date?
+  utter_ask_time:
+  - text: At what time?
+  utter_final_details:
+  - text: Thanks we will keep you posted
+  utter_mimi:
+  - text: The location is {GPE}
+  utter_ask_reachout:
+  - text: Please provide an email for queries or where clients can reach out to you
+  utter_did_that_help:
+  - text: "Did that help you?"
+  utter_details_organize_thanks:
+  - text: You are organizing {Event_Name} to be held at {LOCATION} on {DATE} at {Time}
+
+  utter_happy:
+  - text: "Great, carry on!"
+  utter_any:
+  - text: Thanks for your time 
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+  utter_time:
+  - text: "The time will be {time}."
+  utter_email_details:
+  - buttons:
+    - payload: /confirm_get_ticket
+      title: yes
+    - payload: /deny_ticket
+      title: No
+    text: Do you want to proceed and get your tickets?
+  utter_send_ticket:
+  - text: For the locally available events we send tickets directly to your email.To get the ticket please reply with -
+          Send me the ticket for the event called <event name>
+  utter_ask_event:
+  - text: What type of event are you looking for.We offer the categories of seminar, corporate ,private or any other? 
+  utter_ask_details:
+  - text: Please enter your name
+  utter_thanks:
+  - text: Thanks for the details
+  utter_slot_values:
+  - text: Your name is {PERSON} and email is {email} 
+  
+forms:
+  organize_event_form:
+    required_slots:
+      TIME:
+        - entity: TIME
+          type: from_entity        
+      GPE:
+        - entity: GPE
+          type: from_entity
+      DATE:
+        - entity: DATE
+          type: from_entity
+  event_name_form:
+    required_slots:
+      the_event_name:
+      - type: from_text
+        intent: event_name
+  identity_form:
+    PERSON:
+      - type: from_text
+    email:
+      - type: from_text
+  user_details_form:
+    required_slots:
+      merchandise:
+        - entity: merchandise
+          type: from_entity
+          
+      numbering:
+        - entity: numbering
+          type: from_entity
+          
+  user_email_form:
+    required_slots:
+      email:
+        - entity: email
+          type: from_entity
+actions:
+  - all_slot_values
+  - database_operations
+  - available_merchandise
+  - save_name
+  - action_look_for_event
+  - get_event_fromdb
+  - send_mail
+  - action_submit
+  - action_submit_email
+  - action_submit_adverts
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
