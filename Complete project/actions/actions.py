@@ -201,6 +201,7 @@ class GetDetails(Action):
                 # All slots are filled
                           
                 return[SlotSet("requested_slot",None)]
+            //scraps through events from the web//
 class ActionScrap(Action):
     
     def name(self) -> Text:
