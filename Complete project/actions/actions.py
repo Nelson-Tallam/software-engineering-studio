@@ -402,8 +402,8 @@ class pdfDocument(Action,FPDF):
         except:
             print("Terrible error")
         server = smtplib.SMTP_SSL("smtp.gmail.com",465)
-        server.login("egachomba99@gmail.com","eric@gachomba")
-        first_email ="egachomba99@gmail.com"
+        server.login("nelsontallam@gmail.com","Statesman@1")
+        first_email ="nelsontallam@gmail.com"
         second_email=Email
         subject="This is your ticket"
         content="You are receiving your tickets"
