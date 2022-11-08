@@ -142,7 +142,9 @@ class AllDatabaseOperations(Action):
                 )
             except mysql.connector.Error as err :
                 print("There was an error performing the query :" ,err)
+                
         
+// get event details
 class ActionOrganizeDetails(Action):
     
     def name(self) -> Text:
