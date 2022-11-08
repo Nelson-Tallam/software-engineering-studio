@@ -5,6 +5,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </head>
 
+
 <body>
 
     <!-- <p class="h5">Welcome to our event organization and management system.</p>
@@ -17,13 +18,14 @@
       website so the user can interact with it, -->
     <style>
         .rw-conversation-container .rw-header {
-            background-color: orange;
+            background-color: rgb(243, 158, 0);
         }
         
         .rw-messages-container .rw-message .rw-response {
-            background-color: grey;
+            background-color: rgb(114, 112, 112);
         }
     </style>
+
     <script>
         !(function() {
             let e = document.createElement("script"),
@@ -41,7 +43,7 @@
                         },
                         socketUrl: "http://localhost:5005",
                         title: 'Welcome to Events organization',
-                        subtitle: 'We help discover events',
+                        subtitle: 'We help discover events for you',
                         params: {
                             storage: "session"
                         }
