@@ -223,6 +223,7 @@ forms:
       email:
         - entity: email
           type: from_entity
+
 actions:
   - all_slot_values
   - database_operations
@@ -232,8 +233,10 @@ actions:
   - get_event_fromdb
   - send_mail
   - action_submit
+
   - action_submit_email
   - action_submit_adverts
+
 
 session_config:
   session_expiration_time: 60
