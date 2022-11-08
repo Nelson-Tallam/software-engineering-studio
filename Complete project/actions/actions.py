@@ -68,7 +68,7 @@ class AllDatabaseOperations(Action):
         # Event_name=tracker.latest_message['text']
         # Event_name=Event_name.strip('The event is called ')
         Event_name=tracker.get_slot("the_event_name")
-        Event_name=Event_name.replace('The event is called ','')
+        Event_name=Event_name.replace('What is the name of the event ','')
         print(Event_name)
         Time=tracker.get_slot("TIME")
         Location=tracker.get_slot("GPE")
