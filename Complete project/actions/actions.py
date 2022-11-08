@@ -360,6 +360,7 @@ class GetEventsFromDb(Action):
                     dispatcher.utter_message(response)
             except:
                 print("There is an Error doing the query")
+               //generate ticket as pdf document
 class pdfDocument(Action,FPDF):
     
     def name(self) ->Text:
