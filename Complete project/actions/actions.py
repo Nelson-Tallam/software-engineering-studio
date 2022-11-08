@@ -18,6 +18,7 @@ import mysql.connector
 from rasa_sdk.forms import FormValidationAction
 from rasa_sdk.types import DomainDict
 from rasa_sdk.events import SlotSet ,UserUtteranceReverted , EventType
+//Database connector
 mydb=mysql.connector.connect(
     host="localhost",
     user="root",
