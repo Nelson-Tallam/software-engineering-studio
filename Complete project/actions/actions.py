@@ -144,7 +144,7 @@ class AllDatabaseOperations(Action):
                 print("There was an error performing the query :" ,err)
                 
         
-// get event details
+# // get event details
 class ActionOrganizeDetails(Action):
     
     def name(self) -> Text:
@@ -202,7 +202,7 @@ class GetDetails(Action):
                 # All slots are filled
                           
                 return[SlotSet("requested_slot",None)]
-            //scraps through events from the web//
+            # //scraps through events from the web//
 class ActionScrap(Action):
     
     def name(self) -> Text:
@@ -492,6 +492,18 @@ class ActionSubmit(Action):
                                  Numbering=tracker.get_slot("numbering"),
                                 
                                  )
+    #     class ActionSubmit(Action):
+    # def name(self) ->Text:
+    #     return "action_submit"
+    # def run(self,
+    #     dispatcher: "CollectingDispatcher",
+    #     tracker: Tracker, 
+    #     domain: "DomainDict") -> List[Dict[Text, Any]]:
+    #     dispatcher.utter_message(template="utter_details_thanks",
+    #                              Merchandise=tracker.slots.get("merchandise"), 
+    #                              Numbering=tracker.get_slot("numbering"),
+                                
+    #                              )
         
 class ValidateEmailForm(Action):
     def name(self)->Text:
