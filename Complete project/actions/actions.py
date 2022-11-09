@@ -142,7 +142,9 @@ class AllDatabaseOperations(Action):
                 )
             except mysql.connector.Error as err :
                 print("There was an error performing the query :" ,err)
+                
         
+# // get event details
 class ActionOrganizeDetails(Action):
     
     def name(self) -> Text:
@@ -200,7 +202,7 @@ class GetDetails(Action):
                 # All slots are filled
                           
                 return[SlotSet("requested_slot",None)]
-            //scraps through events from the web//
+            # //scraps through events from the web//
 class ActionScrap(Action):
     
     def name(self) -> Text:
@@ -401,8 +403,8 @@ class pdfDocument(Action,FPDF):
         except:
             print("Terrible error")
         server = smtplib.SMTP_SSL("smtp.gmail.com",465)
-        server.login("egachomba99@gmail.com","eric@gachomba")
-        first_email ="egachomba99@gmail.com"
+        server.login("nelsontallam@gmail.com","Statesman@1")
+        first_email ="nelsontallam@gmail.com"
         second_email=Email
         subject="This is your ticket"
         content="You are receiving your tickets"
@@ -491,6 +493,18 @@ class ActionSubmit(Action):
                                  Numbering=tracker.get_slot("numbering"),
                                 
                                  )
+    #     class ActionSubmit(Action):
+    # def name(self) ->Text:
+    #     return "action_submit"
+    # def run(self,
+    #     dispatcher: "CollectingDispatcher",
+    #     tracker: Tracker, 
+    #     domain: "DomainDict") -> List[Dict[Text, Any]]:
+    #     dispatcher.utter_message(template="utter_details_thanks",
+    #                              Merchandise=tracker.slots.get("merchandise"), 
+    #                              Numbering=tracker.get_slot("numbering"),
+                                
+    #                              )
         
 class ValidateEmailForm(Action):
     def name(self)->Text:
