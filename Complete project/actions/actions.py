@@ -22,8 +22,8 @@ from rasa_sdk.events import SlotSet ,UserUtteranceReverted , EventType
 mydb=mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="root",
-    database="chatbot"
+    passwd="Vincent00",
+    database="mybot"
 )
 mycursor= mydb.cursor()
 class ActionOrganizeDetails(Action):
@@ -428,6 +428,7 @@ ADVERTISING=['chairs','tents','soundsystems']
 
 
 
+
 class ValidateAdvertisingForm(FormValidationAction):
     def name(self) -> Text:
         return "validate_advertising_form"
@@ -493,18 +494,6 @@ class ActionSubmit(Action):
                                  Numbering=tracker.get_slot("numbering"),
                                 
                                  )
-    #     class ActionSubmit(Action):
-    # def name(self) ->Text:
-    #     return "action_submit"
-    # def run(self,
-    #     dispatcher: "CollectingDispatcher",
-    #     tracker: Tracker, 
-    #     domain: "DomainDict") -> List[Dict[Text, Any]]:
-    #     dispatcher.utter_message(template="utter_details_thanks",
-    #                              Merchandise=tracker.slots.get("merchandise"), 
-    #                              Numbering=tracker.get_slot("numbering"),
-                                
-    #                              )
         
 class ValidateEmailForm(Action):
     def name(self)->Text:
@@ -541,6 +530,8 @@ class ActionSubmitEmail(Action):
                                 
                                  )
            
+           
+          
 class ActionGiveDetails(Action):
     def name(self) ->Text:
         return "action_submit_adverts"
