@@ -18,11 +18,12 @@ import mysql.connector
 from rasa_sdk.forms import FormValidationAction
 from rasa_sdk.types import DomainDict
 from rasa_sdk.events import SlotSet ,UserUtteranceReverted , EventType
+//Database connector
 mydb=mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="root",
-    database="chatbot"
+    passwd="Vincent00",
+    database="mybot"
 )
 mycursor= mydb.cursor()
 class ActionOrganizeDetails(Action):
@@ -68,7 +69,7 @@ class AllDatabaseOperations(Action):
         # Event_name=tracker.latest_message['text']
         # Event_name=Event_name.strip('The event is called ')
         Event_name=tracker.get_slot("the_event_name")
-        Event_name=Event_name.replace('The event is called ','')
+        Event_name=Event_name.replace('What is the name of the event ','')
         print(Event_name)
         Time=tracker.get_slot("TIME")
         Location=tracker.get_slot("GPE")
@@ -366,6 +367,7 @@ class GetEventsFromDb(Action):
 
 
 
+
 class ValidateAdvertisingForm(FormValidationAction):
     def name(self) -> Text:
         return "validate_advertising_form"
@@ -431,18 +433,6 @@ class ActionSubmit(Action):
                                  Numbering=tracker.get_slot("numbering"),
                                 
                                  )
-    #     class ActionSubmit(Action):
-    # def name(self) ->Text:
-    #     return "action_submit"
-    # def run(self,
-    #     dispatcher: "CollectingDispatcher",
-    #     tracker: Tracker, 
-    #     domain: "DomainDict") -> List[Dict[Text, Any]]:
-    #     dispatcher.utter_message(template="utter_details_thanks",
-    #                              Merchandise=tracker.slots.get("merchandise"), 
-    #                              Numbering=tracker.get_slot("numbering"),
-                                
-    #                              )
         
 class ValidateEmailForm(Action):
     def name(self)->Text:
@@ -479,6 +469,8 @@ class ActionSubmitEmail(Action):
                                 
                                  )
            
+           
+          
 class ActionGiveDetails(Action):
     def name(self) ->Text:
         return "action_submit_adverts"
