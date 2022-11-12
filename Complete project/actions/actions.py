@@ -299,7 +299,7 @@ class GetEventsFromDb(Action):
             except:
                 print("There is an Error doing the query")
             # mydb.close()
-        elif destination== 'seminar':
+         elif destination== 'seminar':
             try:
                 text="SELECT * from seminars"
                 mycursor.execute(text)
