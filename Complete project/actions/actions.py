@@ -147,7 +147,30 @@ class AllDatabaseOperations(Action):
         
 # // get event details
 class ActionOrganizeDetails(Action):
-    
+    def name(self) -> Text:
+        return "available_merchandise"
+
+    def run(self, 
+            dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        information=tracker.get_intent_of_latest_message()            
+        if information =='inform_looking_for_tents':
+            try:
+                text="SELECT * from tents"
+                mycursor.execute(text)
+                myresult=mycursor.fetchall()
+                for row in myresult:
+                    Numbers=row[0]
+                    Email=row[1]
+                    
+                    details=("We have an advertiser advertising %d tents.You can contact him  on %s" % (Numbers , Email))
+                    response=""" {}.""".format(details)
+                    dispatcher.utter_message(response)
+                # mydb.close()
+            except mysql.connector.Error as err :
+                print("There was an Error performing the query:" ,err)
+            # mydb.close()
     
         else:
             try:
