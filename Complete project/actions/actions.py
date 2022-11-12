@@ -172,6 +172,7 @@ class ActionOrganizeDetails(Action):
                 # mydb.close()
             except mysql.connector.Error as err :
                 print("There was an Error performing the query:" ,err)
+                print("wait as we look for an adveriser")
             # mydb.close()
     
         else:
@@ -182,6 +183,7 @@ class ActionOrganizeDetails(Action):
                 for row in myresult:
                     Numbers=row[0]
                     Email=row[1]
+                    
                     
                     details=("We have an advertiser advertising %d chairs.You can contact him  on %s" % (Numbers , Email))
                     response=""" {}.""".format(details)
