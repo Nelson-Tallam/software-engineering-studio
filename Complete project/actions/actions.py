@@ -147,9 +147,7 @@ class AllDatabaseOperations(Action):
         
 # // get event details
 class ActionOrganizeDetails(Action):
-
-     def name(self) -> Text:
-
+    def name(self) -> Text:
         return "available_merchandise"
 
     def run(self, 
@@ -186,7 +184,6 @@ class ActionOrganizeDetails(Action):
                     details=("We have an advertiser advertising %d chairs.You can contact him  on %s" % (Numbers , Email))
                     response=""" {}.""".format(details)
                     dispatcher.utter_message(response)
-   
             except:
                 print("There is an Error doing the query")
 class GetDetails(Action):
