@@ -270,7 +270,7 @@ class GetEventsFromDb(Action):
         destination=tracker.latest_message['text']
         if destination== 'private':
             try:
-                text="SELECT * from private"
+                text="SELECT * from private" 
                 mycursor.execute(text)
                 myresult=mycursor.fetchall()
                 for row in myresult:
@@ -364,9 +364,6 @@ class GetEventsFromDb(Action):
             except:
                 print("There is an Error doing the query")
    #//the web scraping ends here//          
-
-
-
 
 class ValidateAdvertisingForm(FormValidationAction):
     def name(self) -> Text:
