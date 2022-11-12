@@ -208,7 +208,7 @@ class ActionScrap(Action):
     
     def name(self) -> Text:
         return "action_look_for_event"
-
+#//we run dispatcher to the first web, eventsbritekenya//
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
@@ -363,7 +363,7 @@ class GetEventsFromDb(Action):
                     dispatcher.utter_message(response)
             except:
                 print("There is an Error doing the query")
-              
+   #//the web scraping ends here//          
 
 
 
