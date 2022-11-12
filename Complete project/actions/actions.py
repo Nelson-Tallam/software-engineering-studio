@@ -18,11 +18,12 @@ import mysql.connector
 from rasa_sdk.forms import FormValidationAction
 from rasa_sdk.types import DomainDict
 from rasa_sdk.events import SlotSet ,UserUtteranceReverted , EventType
+//Database connector
 mydb=mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="root",
-    database="chatbot"
+    passwd="Vincent00",
+    database="mybot"
 )
 mycursor= mydb.cursor()
 class ActionOrganizeDetails(Action):
@@ -68,7 +69,7 @@ class AllDatabaseOperations(Action):
         # Event_name=tracker.latest_message['text']
         # Event_name=Event_name.strip('The event is called ')
         Event_name=tracker.get_slot("the_event_name")
-        Event_name=Event_name.replace('The event is called ','')
+        Event_name=Event_name.replace('What is the name of the event ','')
         print(Event_name)
         Time=tracker.get_slot("TIME")
         Location=tracker.get_slot("GPE")
@@ -142,9 +143,13 @@ class AllDatabaseOperations(Action):
                 )
             except mysql.connector.Error as err :
                 print("There was an error performing the query :" ,err)
+                
         
+# // get event details
 class ActionOrganizeDetails(Action):
+
      def name(self) -> Text:
+
         return "available_merchandise"
 
     def run(self, 
@@ -168,6 +173,7 @@ class ActionOrganizeDetails(Action):
             except mysql.connector.Error as err :
                 print("There was an Error performing the query:" ,err)
             # mydb.close()
+    
         else:
             try:
                 text="SELECT * from chairs"
@@ -200,11 +206,12 @@ class GetDetails(Action):
                 # All slots are filled
                           
                 return[SlotSet("requested_slot",None)]
+            # //scraps through events from the web//
 class ActionScrap(Action):
     
     def name(self) -> Text:
         return "action_look_for_event"
-
+#//we run dispatcher to the first web, eventsbritekenya//
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
@@ -295,7 +302,7 @@ class GetEventsFromDb(Action):
             except:
                 print("There is an Error doing the query")
             # mydb.close()
-        elif destination== 'seminar':
+         elif destination== 'seminar':
             try:
                 text="SELECT * from seminars"
                 mycursor.execute(text)
@@ -359,67 +366,7 @@ class GetEventsFromDb(Action):
                     dispatcher.utter_message(response)
             except:
                 print("There is an Error doing the query")
-class pdfDocument(Action,FPDF):
-    
-    def name(self) ->Text:
-        return "send_mail"
-    def run(self, 
-            dispatcher: "CollectingDispatcher",
-            tracker: Tracker,
-            domain: "DomainDict") -> List[Dict[Text, Any]]:  
-        Event_name=tracker.latest_message['text']
-        Event_name=Event_name.replace('Send me the ticket for the event called ', '')
-        
-        Email=tracker.get_slot('email')
-        Person_name=tracker.get_slot('PERSON') 
-        qr=qrcode.QRCode(
-        version=1, #size of the qrcode
-        box_size=15,
-        border=5
-        )  
-        data=Event_name +"\n" + Email +"\n"+ Person_name
-        qr.add_data(data)
-        qr.make(fit=True)
-        img=qr.make_image(fill='black',back_color='white')
-        try:
-            img.save('Event QR Code.png')
-        except:
-            print("An exception occured")
-        pdf=FPDF('P','mm','Letter')
-        pdf.add_page()
-        pdf.set_font('helvetica','',16)
-        pdf.image('Event QR Code.png',10,8,25)
-        pdf.ln(20)
-        Event_details='This is your ticket for  %s '% (Event_name)
-        
-        pdf.cell(40,10,Event_details)
-        
-        try:
-            pdf.output('Yourticket.pdf')
-        except:
-            print("Terrible error")
-        server = smtplib.SMTP_SSL("smtp.gmail.com",465)
-        server.login("egachomba99@gmail.com","eric@gachomba")
-        first_email ="egachomba99@gmail.com"
-        second_email=Email
-        subject="This is your ticket"
-        content="You are receiving your tickets"
-        msg= MIMEMultipart()
-        msg['From']=first_email
-        msg['To']= second_email
-        msg['Subject']= subject
-        body= MIMEText(content,'plain')
-        msg.attach(body)
-        filename='Yourticket.pdf'
-        with open(filename,'rb') as f:
-            attachment= MIMEApplication(f.read(),Name=basename(filename))
-            attachment['Content-Disposition']= 'attachment;filename="{}"'.format(basename(filename))
-        
-        msg.attach(attachment)
-        server.send_message(msg,from_addr=first_email,to_addrs=[second_email])
-        server.quit()
-        dispatcher.utter_message(text='Please Check your email inbox')
-ADVERTISING=['chairs','tents','soundsystems']
+   #//the web scraping ends here//          
 
 
 
@@ -525,6 +472,8 @@ class ActionSubmitEmail(Action):
                                 
                                  )
            
+           
+          
 class ActionGiveDetails(Action):
     def name(self) ->Text:
         return "action_submit_adverts"
@@ -543,4 +492,67 @@ class ActionGiveDetails(Action):
             sql='INSERT INTO chairs(Numbers,Email) VALUES("{0}","{1}");'.format(Numbering,Email)
             mycursor.execute(sql)
             mydb.commit()
-     
+      //generate ticket as pdf document
+
+class pdfDocument(Action,FPDF):
+    
+    def name(self) ->Text:
+        return "send_mail"
+    def run(self, 
+            dispatcher: "CollectingDispatcher",
+            tracker: Tracker,
+            domain: "DomainDict") -> List[Dict[Text, Any]]:  
+        Event_name=tracker.latest_message['text']
+        Event_name=Event_name.replace('Send me the ticket for the event called ', '')
+        
+        Email=tracker.get_slot('email')
+        Person_name=tracker.get_slot('PERSON') 
+        qr=qrcode.QRCode(
+        version=1, #size of the qrcode
+        box_size=15,
+        border=5
+        )  
+        data=Event_name +"\n" + Email +"\n"+ Person_name
+        qr.add_data(data)
+        qr.make(fit=True)
+        img=qr.make_image(fill='black',back_color='white')
+        try:
+            img.save('Event QR Code.png')
+        except:
+            print("An exception occured")
+        pdf=FPDF('P','mm','Letter')
+        pdf.add_page()
+        pdf.set_font('helvetica','',16)
+        pdf.image('Event QR Code.png',10,8,25)
+        pdf.ln(20)
+        Event_details='This is your ticket for  %s '% (Event_name)
+        
+        pdf.cell(40,10,Event_details)
+        
+        try:
+            pdf.output('Yourticket.pdf')
+        except:
+            print("Terrible error")
+        server = smtplib.SMTP_SSL("smtp.gmail.com",465)
+        server.login("nelsontallam@gmail.com","Statesman@1")
+        first_email ="nelsontallam@gmail.com"
+        second_email=Email
+        subject="This is your ticket"
+        content="You are receiving your tickets"
+        msg= MIMEMultipart()
+        msg['From']=first_email
+        msg['To']= second_email
+        msg['Subject']= subject
+        body= MIMEText(content,'plain')
+        msg.attach(body)
+        filename='Yourticket.pdf'
+        with open(filename,'rb') as f:
+            attachment= MIMEApplication(f.read(),Name=basename(filename))
+            attachment['Content-Disposition']= 'attachment;filename="{}"'.format(basename(filename))
+        
+        msg.attach(attachment)
+        server.send_message(msg,from_addr=first_email,to_addrs=[second_email])
+        server.quit()
+        dispatcher.utter_message(text='Please Check your email inbox')
+ADVERTISING=['chairs','tents','soundsystems']
+

@@ -5,10 +5,10 @@ rules:
 
 - rule: Activate the event details form
   steps:
-  - intent: event_name
-  - action: event_name_form
-  - action: utter_ask_organize_everything
-  - action: organize_event_form
+  - intent:  event_name
+  - action:  event_name_form
+  - action:  utter_ask_organize_everything
+  - action:  organize_event_form
   - active_loop: organize_event_form
 - rule: Deactivate the event details form
   condition:
