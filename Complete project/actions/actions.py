@@ -431,7 +431,26 @@ class ActionSubmit(Action):
                                 
                                  )
         
-
+class ValidateEmailForm(Action):
+    def name(self)->Text:
+        return "user_email_form"
+    def run(self, 
+        dispatcher: "CollectingDispatcher",
+        tracker: Tracker,
+        domain:Dict) -> List[EventType]:
+        
+        required_slots=["email"]
+        
+        for slot_name in required_slots:
+            if(tracker.slots.get(slot_name)) is None:
+                # The slots are not yet filled
+                return[SlotSet("requested_slot",slot_name)]
+                      
+            else:
+                # All slots are filled
+                          
+                return[SlotSet("requested_slot",None)]       
+        
 
   #                               )
 class ActionSubmitEmail(Action):
@@ -467,7 +486,7 @@ class ActionGiveDetails(Action):
             sql='INSERT INTO chairs(Numbers,Email) VALUES("{0}","{1}");'.format(Numbering,Email)
             mycursor.execute(sql)
             mydb.commit()
-      //generate ticket as pdf document
+    #   //generate ticket as pdf document
 
 class pdfDocument(Action,FPDF):
     
