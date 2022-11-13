@@ -203,7 +203,8 @@ class GetDetails(Action):
                 # All slots are filled
                           
                 return[SlotSet("requested_slot",None)]
-         # //scraps through events from the web//
+         
+# //scraps through events from the web//
 class ActionScrap(Action):
     
     def name(self) -> Text:
@@ -364,7 +365,6 @@ class GetEventsFromDb(Action):
             except:
                 print("There is an Error doing the query")
    #//the web scraping ends here//                
-
 class ValidateAdvertisingForm(FormValidationAction):
     def name(self) -> Text:
         return "validate_advertising_form"
