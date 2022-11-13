@@ -206,7 +206,7 @@ class GetDetails(Action):
          # //scraps through events from the web//
 class ActionScrap(Action):
     
-    def name(self) -> Text:
+    
         return "action_look_for_event"
 #//we run dispatcher to the first web, eventsbritekenya//
     def run(self, dispatcher: CollectingDispatcher,
